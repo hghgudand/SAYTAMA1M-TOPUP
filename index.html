@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রি ফায়ার টপ-আপ</title>
+    <meta name="description" content="বাংলাদেশের সেরা ফ্রি ফায়ার টপ-আপ সার্ভিস, দ্রুত ও নিরাপদ।">
+    <meta name="keywords" content="ফ্রি ফায়ার, টপ-আপ, বাংলাদেশ, SAYTAMA1M TOPUP">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* সাধারণ স্টাইল */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #ff6600, #ff8c42);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0px 5px 10px rgba(255, 102, 0, 0.5);
+        }
+        .floating-icons {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .floating-icons a {
+            background-color: rgba(255, 102, 0, 0.8);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 22px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(255, 165, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .floating-icons a:hover {
+            transform: scale(1.2);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.8);
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        nav a:hover {
+            transform: scale(1.2);
+            color: #ff6600;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            text-align: center;
+        }
+        .topup-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .topup-option {
+            background-color: #000;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 2px 10px rgba(255, 165, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .topup-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.5);
+        }
+        .topup-option h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .topup-option button {
+            background: #ff8c42;
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .topup-option button:hover {
+            background: #ff6600;
+        }
+        .animated-text {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: glowingText 3s linear infinite;
+            text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+        @keyframes glowingText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffcc00;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .topup-page {
+            display: none;
+        }
+        .back-btn {
+            background: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background: #ff8c42;
+        }
+        .diamond-package {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            width: 280px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .diamond-package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.5);
+        }
+        .diamond-package h3, .diamond-package p {
+            margin: 10px 0;
+        }
+        .diamond-package button {
+            background: #ff6600;
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .diamond-package button:hover {
+            background: #ff8c42;
+        }
+        .diamond-package::after {
+            content: '🔥';
+            font-size: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        /* New styles for UID box */
+        .uid-box {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .uid-box input {
+            padding: 10px;
+            font-size: 18px;
+            width: 80%;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 2px solid #ff6600;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        .uid-box button {
+            background-color: #ff6600;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .uid-box button:hover {
+            background-color: #ff8c42;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- প্রথম পেজ -->
+    <header id="firstPageHeader">
+        ফ্রি ফায়ার টপ-আপ
+    </header>
+
+    <div class="floating-icons">
+        <a href="#" id="call-icon"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <div class="container" id="firstPage">
+        <section id="topup">
+            <h2 class="animated-text">🔥  SAYTAMA1M TOPUP 🔥</h2>
+            <div class="topup-options">
+                <div class="topup-option">
+                    <h3>UID ইনপুট করুন</h3>
+                    <div class="uid-box">
+                        <input type="text" id="uidInput" placeholder="আপনার UID এখানে লিখুন">
+                        <button onclick="goToTopupPage()">টপ-আপ করুন</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // কল আইকন ক্লিক
+        document.querySelector('#call-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            let confirmCall = confirm("আপনি কি টেলিগ্রামে যেতে চান?");
+            if (confirmCall) {
+                window.location.href = "https://t.me/SAYTAMA1M";  // টেলিগ্রাম লিঙ্কে নিয়ে যাবে
+            }
+        });
+
+        // UID ইনপুট দিয়ে টপ-আপ পেজে যাওয়ার ফাংশন
+        function goToTopupPage() {
+            const uid = document.getElementById('uidInput').value;
+            if (uid) {
+                document.getElementById("firstPage").style.display = "none";
+                document.getElementById("firstPageHeader").style.display = "none";
+                document.getElementById("topupPage").style.display = "block";
+            } else {
+                alert("অনুগ্রহ করে UID প্রদান করুন।");
+            }
+        }
+    </script>
+
+    <!-- দ্বিতীয় পেজ -->
+    <div id="topupPage" class="topup-page">
+        <header>
+            ফ্রি ফায়ার ডায়মন্ড টপ-আপ
+        </header>
+
+        <button class="back-btn" onclick="goBack()">পেছনে যান</button>
+
+        <div class="container">
+            <!-- ডায়মন্ড প্যাকেজ গুলি -->
+            <div class="diamond-package">
+                <h3>💎 ২৫ ডায়মন্ড</h3>
+                <p>৳২৪</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৫০ ডায়মন্ড</h3>
+                <p>৳৪০</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ১১৫ ডায়মন্ড</h3>
+                <p>৳৭৮</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ২৪০ ডায়মন্ড</h3>
+                <p>৳১৫৪</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৩৫৫ ডায়মন্ড</h3>
+                <p>৳২৩৫</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৪৮০ ডায়মন্ড</h3>
+                <p>৳৩০৬</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৬১০ ডায়মন্ড</h3>
+                <p>৳৩৯৫</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৮৫০ ডায়মন্ড</h3>
+                <p>৳৫৪৫</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ১২৪০ ডায়মন্ড</h3>
+                <p>৳৭৮৫</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ২৫৩০ ডায়মন্ড</h3>
+                <p>৳১৫৭০</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ৫০৬০ ডায়মন্ড</h3>
+                <p>৳৩১৩০</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>💎 ১০১২০ ডায়মন্ড</h3>
+                <p>৳৬২৫০</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>🗓️ Monthly</h3>
+                <p>৳৭৫০</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>🗓️ Weekly</h3>
+                <p>৳১৫৩</p>
+                <button>ক্রয় করুন</button>
+            </div>
+            <div class="diamond-package">
+                <h3>⚡ Level Up Pass</h3>
+                <p>৳১৫৫</p>
+                <button>ক্রয় করুন</button>
+        </div>
+    </div>
+
+    <script>
+        // পেছনে যাওয়ার ফাংশন
+        function goBack() {
+            document.getElementById("topupPage").style.display = "none";
+            document.getElementById("firstPage").style.display = "block";
+            document.getElementById("firstPageHeader").style.display = "block";
+        }
+    </script>
+</body>
+</html>
